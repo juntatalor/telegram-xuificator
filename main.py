@@ -1,8 +1,9 @@
-
 from tornado import gen, ioloop
 from telezombie import api
 import re
 from random import choice
+
+from api_token import API_TOKEN
 
 
 def make_x(s):
@@ -38,7 +39,7 @@ class Xuificator(api.TeleLich):
                     'Заебываешь, блять!',
                     'Я тебя по IP вычислю!',
                     'Я если я тебя в реале найду?',
-		    'Нахуй иди',
+                    'Нахуй иди',
                     'Иди нахуй',
                     'Поешь говна, грубиян-хуиян']
 
@@ -58,10 +59,10 @@ class Xuificator(api.TeleLich):
             return
 
         # Не надо обижать бота!
-#        p = re.compile(
-#            r'(х(у+)(й|и|ю|я|е))|(дурак)|(идиот)|(лох)|(лош(о|а))|(пид(о|р))|(педик)|(г(о|а)ндон)|с(у+)(к|ч|(чк))(а+)|(муд(о|а))')
-	p = re.compile(
-             r'((сам)? ?(ты)? ?(сам)?|((по)?сл(у|ы)ш(ай)?)) ?,? (х(у+)(й|и|ю|я|е))|(дурак)|(идиот)|(лох)|(лош(о|а))|(пид(о|р))|(педик)|(г(о|а)ндон)|с(у+)(к|ч|(чк))(а+)|(муд(о|а))')
+        #       p = re.compile(
+        #            r'(х(у+)(й|и|ю|я|е))|(дурак)|(идиот)|(лох)|(лош(о|а))|(пид(о|р))|(педик)|(г(о|а)ндон)|с(у+)(к|ч|(чк))(а+)|(муд(о|а))')
+        p = re.compile(
+            r'((сам)? ?(ты)? ?(сам)?|((по)?сл(у|ы)ш(ай)?)) ?,? (х(у+)(й|и|ю|я|е))|(дурак)|(идиот)|(лох)|(лош(о|а))|(пид(о|р))|(педик)|(г(о|а)ндон)|с(у+)(к|ч|(чк))(а+)|(муд(о|а))')
         if p.search(lt):
             yield self.send_message(chat.id_, choice(self.RUDE_PHRASES))
             return
@@ -83,8 +84,7 @@ class Xuificator(api.TeleLich):
 
 @gen.coroutine
 def forever():
-    api_token = ''
-    proc = Xuificator(api_token)
+    proc = Xuificator(API_TOKEN)
 
     yield proc.poll()
 
