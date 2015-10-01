@@ -18,6 +18,8 @@ def make_x(s):
                 l1 = 'ю'
             elif l == 'ы':
                 l1 = 'и'
+            elif l == 'э':
+                l1 = 'е'
             else:
                 l1 = l
             return 'ху' + l1 + s[i + 1:]
