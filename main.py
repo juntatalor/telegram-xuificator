@@ -57,7 +57,7 @@ class Xuificator(api.TeleLich):
             yield self.send_message(chat.id_, choice(self.XUI_PHRASES))
             return
         if lt.find('это ') == 0:
-            lt = lt[5:]
+            lt = lt[4:]
             additions = 'это '
         # Не надо обижать бота!
 #        p = re.compile(
